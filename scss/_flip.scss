@@ -1,0 +1,130 @@
+:root {
+  --color-blue: dodgerblue;
+  --color-orange: orange;
+  --color-red: red;
+  --color-tomato: tomato;
+  --color-gray: gray;
+}
+
+// variable
+$cubic: 0.645,0.045,0.355,1.000;
+$perspective: 2038px;
+$transX: -90;
+$transY: -80;
+$scale: 40;
+$rotateY: 33deg;
+$rotateX: 12deg;
+$step-transformX: 15;
+$step-transformY: 5;
+$step-scale: 15;
+
+// function
+@function calcTranslate($stand, $idx, $step) {
+  @return ($stand + ($idx * $step)) * 1%;
+}
+
+@function calcScale($stand, $idx, $step) {
+  @return ($stand + ($idx * $step)) / 100;
+}
+
+// mixin
+@mixin cardTransition($translateX, $translateY, $scale, $perspective, $rotateY, $rotateX) {
+  transform: translate($translateX, $translateY) scale($scale) perspective($perspective) rotateY($rotateY)
+    rotateX($rotateX);
+}
+
+@mixin iterator {
+  @content;
+}
+
+.invoice {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 320px;
+
+  &__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    transform-origin: center bottom;
+    font-size: 1.2rem;
+    background: #fff;
+    transition: transform 1s;
+    box-shadow: -1px -1px 5px 0 rgba(26, 26, 67, 0.05), -12px 20px 125px -25px rgba(50, 50, 93, 0.5),
+      -18px 20px 75px -37.5px rgba(0, 0, 0, 0.6);
+
+    .anim & {
+      animation: {
+        duration: 1s;
+        timing-function: cubic-bezier(var(--cubic));
+        direction: forwards;
+      }
+    }
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        @include cardTransition(
+          calcTranslate($transX, $i - 1, $step-transformX),
+          calcTranslate($transY, ($i - 1), $step-transformY),
+          calcScale($scale, ($i - 1), $step-scale),
+          $perspective,
+          $rotateY,
+          $rotateX
+        );
+        z-index: #{$i};
+
+        @if $i == 1 {
+          opacity: 0;
+        }
+
+        .anim & {
+          animation-name: anim-step-#{$i};
+        }
+      }
+    } // for
+  }
+}
+
+.tomato {
+  background-color: var(--color-tomato);
+}
+.blue {
+  background-color: var(--color-blue);
+}
+.orange {
+  background-color: var(--color-orange);
+}
+.red {
+  background-color: var(--color-red);
+}
+.gray {
+  background-color: var(--color-gray);
+}
+
+@for $i from 1 through 5 {
+  @keyframes anim-step-#{$i} {
+    to {
+      @if $i == 1 or $i == 3 {
+        opacity: 1;
+      }
+
+      @include cardTransition(
+        calcTranslate($transX, if($i == 5, 4, $i), $step-transformX),
+        calcTranslate($transY, if($i == 5, 4, $i), $step-transformY),
+        calcScale($scale, if($i == 5, 4, $i), $step-scale),
+        $perspective,
+        $rotateY,
+        if($i == 5, -90deg, $rotateX)
+      );
+    } // to
+  } // keyframes
+} // for

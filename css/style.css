@@ -1,0 +1,330 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-top: 30vh;
+  height: 100vh;
+}
+
+:root {
+  --color-blue: dodgerblue;
+  --color-orange: orange;
+  --color-red: red;
+  --color-tomato: tomato;
+  --color-gray: gray;
+}
+
+.invoice {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 320px;
+}
+.invoice__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transform-origin: center bottom;
+  font-size: 1.2rem;
+  background: #fff;
+  transition: transform 1s;
+  box-shadow: -1px -1px 5px 0 rgba(26, 26, 67, 0.05), -12px 20px 125px -25px rgba(50, 50, 93, 0.5), -18px 20px 75px -37.5px rgba(0, 0, 0, 0.6);
+}
+.anim .invoice__card {
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(var(--cubic));
+  animation-direction: forwards;
+}
+.invoice__card:nth-child(1) {
+  transform: translate(-90%, -80%) scale(0.4) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  z-index: 1;
+  opacity: 0;
+}
+.anim .invoice__card:nth-child(1) {
+  animation-name: anim-step-1;
+}
+.invoice__card:nth-child(2) {
+  transform: translate(-75%, -75%) scale(0.55) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  z-index: 2;
+}
+.anim .invoice__card:nth-child(2) {
+  animation-name: anim-step-2;
+}
+.invoice__card:nth-child(3) {
+  transform: translate(-60%, -70%) scale(0.7) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  z-index: 3;
+}
+.anim .invoice__card:nth-child(3) {
+  animation-name: anim-step-3;
+}
+.invoice__card:nth-child(4) {
+  transform: translate(-45%, -65%) scale(0.85) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  z-index: 4;
+}
+.anim .invoice__card:nth-child(4) {
+  animation-name: anim-step-4;
+}
+.invoice__card:nth-child(5) {
+  transform: translate(-30%, -60%) scale(1) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  z-index: 5;
+}
+.anim .invoice__card:nth-child(5) {
+  animation-name: anim-step-5;
+}
+
+.tomato {
+  background-color: var(--color-tomato);
+}
+
+.blue {
+  background-color: var(--color-blue);
+}
+
+.orange {
+  background-color: var(--color-orange);
+}
+
+.red {
+  background-color: var(--color-red);
+}
+
+.gray {
+  background-color: var(--color-gray);
+}
+
+@keyframes anim-step-1 {
+  to {
+    opacity: 1;
+    transform: translate(-75%, -75%) scale(0.55) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  }
+}
+@keyframes anim-step-2 {
+  to {
+    transform: translate(-60%, -70%) scale(0.7) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  }
+}
+@keyframes anim-step-3 {
+  to {
+    opacity: 1;
+    transform: translate(-45%, -65%) scale(0.85) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  }
+}
+@keyframes anim-step-4 {
+  to {
+    transform: translate(-30%, -60%) scale(1) perspective(2038px) rotateY(33deg) rotateX(12deg);
+  }
+}
+@keyframes anim-step-5 {
+  to {
+    transform: translate(-30%, -60%) scale(1) perspective(2038px) rotateY(33deg) rotateX(-90deg);
+  }
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.notification {
+  width: 546px;
+  height: 607px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a86247;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.08);
+  color: #3d5399;
+}
+.notification::before {
+  width: 76px;
+  height: 76px;
+  content: "";
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border-radius: 50%;
+}
+.notification__inner {
+  width: 440px;
+  height: 487px;
+  position: relative;
+  padding: 30px 27px;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 2px 7px 0 rgba(50, 62, 81, 0.2);
+}
+.notification__inner::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(20%, #fff), to(rgba(246, 249, 252, 0)));
+  height: 200px;
+  z-index: 5;
+  content: "";
+}
+.notification h1 {
+  font-size: 20px;
+}
+.notification .card-wrap {
+  position: relative;
+}
+.notification__card {
+  width: 400px;
+  height: 130px;
+  position: absolute;
+  left: 50%;
+  top: 46px;
+  transform: translateX(-50%);
+  padding: 16px 24px 0 74px;
+  background-color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 5px 12px -2px rgba(9, 30, 66, 0.25), 0 0 1px 0 rgba(9, 30, 66, 0.31);
+}
+.notification__card::before {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 24px;
+  top: 16px;
+  content: "";
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.notification__card-status {
+  position: relative;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  font-size: 18px;
+  color: rgba(109, 115, 129, 0.6);
+}
+.notification__card-date {
+  position: absolute;
+  top: 30px;
+  right: 16px;
+  color: #6d7381;
+}
+.notification__card-tit-wrap {
+  margin-bottom: 9px;
+  color: #383a3f;
+}
+.notification__card-desc {
+  overflow: hidden;
+  word-wrap: nomal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #383a3f;
+}
+.notification__card--caution::before {
+  background-image: url("../images/ic-critical.svg");
+}
+.notification__card--key::before {
+  background-image: url("../images/ic-key.svg");
+}
+.notification__card--warning::before {
+  background-image: url("../images/ic-warning.svg");
+}
+.anim .notification__card {
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.notification__card:nth-child(1) {
+  top: 46px;
+  transform: translateX(-50%) scale(0.9);
+  z-index: 3;
+  opacity: 0;
+}
+.anim .notification__card:nth-child(1) {
+  animation-name: slide-in;
+}
+.notification__card:nth-child(2) {
+  transform: translateX(-50%) scale(1.2);
+  z-index: 3;
+}
+.anim .notification__card:nth-child(2) {
+  animation-name: slide-step2;
+}
+.notification__card:nth-child(3) {
+  transform: translateX(-50%) translateY(100%) translateY(5px) scale(0.9);
+}
+.anim .notification__card:nth-child(3) {
+  animation-name: slide-step3;
+}
+.notification__card:nth-child(4) {
+  transform: translateX(-50%) translateY(200%) translateY(3px) scale(0.9);
+}
+.anim .notification__card:nth-child(4) {
+  animation-name: slide-step4;
+}
+.notification__close-btn {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  right: 27px;
+  top: 30px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(76, 94, 122, 0.5);
+  color: #fff;
+}
+
+@keyframes slide-in {
+  to {
+    top: 46px;
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+@keyframes slide-step2 {
+  from {
+    top: 46px;
+    transform: translateX(-50%) scale(1.2);
+    z-index: 3;
+  }
+  to {
+    transform: translateX(-50%) translateY(100%) translateY(5px) scale(0.9);
+    z-index: 2;
+  }
+}
+@keyframes slide-step3 {
+  from {
+    transform: translateX(-50%) translateY(100%) translateY(5px) scale(0.9);
+  }
+  to {
+    transform: translateX(-50%) translateY(200%) translateY(3px) scale(0.9);
+  }
+}
+@keyframes slide-step4 {
+  from {
+    transform: translateX(-50%) translateY(200%) translateY(3px) scale(0.9);
+  }
+  to {
+    transform: translateX(-50%) translateY(210%) translateY(3px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

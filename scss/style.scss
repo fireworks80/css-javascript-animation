@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-top: 30vh;
+  height: 100vh;
+}
+
+@import "_flip";
+@import "_notification";
